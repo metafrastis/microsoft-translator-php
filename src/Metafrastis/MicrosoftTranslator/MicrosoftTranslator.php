@@ -12,6 +12,7 @@ class MicrosoftTranslator {
         $args['base'] = isset($args['base']) ? $args['base'] : 'https://api.cognitive.microsofttranslator.com';
         $args['version'] = isset($args['version']) ? $args['version'] : '3.0';
         $args['key'] = isset($args['key']) ? $args['key'] : null;
+        $args['region'] = isset($args['region']) ? $args['region'] : null;
         $args['from'] = isset($args['from']) ? $args['from'] : null;
         $args['to'] = isset($args['to']) ? $args['to'] : null;
         $args['text'] = isset($args['text']) ? $args['text'] : null;
@@ -51,6 +52,9 @@ class MicrosoftTranslator {
             'Content-type: application/json',
             'Ocp-Apim-Subscription-Key: '.$args['key'],
         ];
+        if ($args['region']) {
+            $headers[] = 'Ocp-Apim-Subscription-Region: '.$args['region'];
+        }
         $params = json_encode([['Text' => $args['text']]]);
         if (is_array($args['text'])) {
             $texts = [];
@@ -105,6 +109,7 @@ class MicrosoftTranslator {
         $args['base'] = isset($args['base']) ? $args['base'] : 'https://api.cognitive.microsofttranslator.com';
         $args['version'] = isset($args['version']) ? $args['version'] : '3.0';
         $args['key'] = isset($args['key']) ? $args['key'] : null;
+        $args['region'] = isset($args['region']) ? $args['region'] : null;
         $args['text'] = isset($args['text']) ? $args['text'] : null;
         if (!$args['base']) {
             return false;
@@ -123,6 +128,9 @@ class MicrosoftTranslator {
             'Content-type: application/json',
             'Ocp-Apim-Subscription-Key: '.$args['key'],
         ];
+        if ($args['region']) {
+            $headers[] = 'Ocp-Apim-Subscription-Region: '.$args['region'];
+        }
         $params = json_encode([['Text' => $args['text']]]);
         if (is_array($args['text'])) {
             $texts = [];
